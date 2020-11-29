@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 public class EmployeeWageBuilder implements IComputeEmpWage {
 
         public static final int IS_PART_TIME=1;
@@ -6,17 +8,20 @@ public class EmployeeWageBuilder implements IComputeEmpWage {
 
         private int numOfCompany=0;
         private LinkedList<CompanyEmpWage> companyEmpWageList;
+	private Map<String,CompanyEmpWage> companyEmpWageMap;
 
 
         public EmployeeWageBuilder()
         {
-                companyEmpWageList=new LinkedList<>();
+                companyEmpWageList=new LinkedList<CompanyEmpWage>();
+		companyEmpWageMap=new HashMap<String,CompanyEmpWage>();
         }
 
         private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
         {
                 CompanyEmpWage companyEmpWage=new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
                 companyEmpWageList.add(companyEmpWage);
+		companyEmpWageMap.put(company,companyEmpWage);
         }
 
         private void computeEmpWage()
@@ -24,8 +29,8 @@ public class EmployeeWageBuilder implements IComputeEmpWage {
                 for (int i = 0; i < companyEmpWageList.size(); i++)
                 {
 			CompanyEmpWage compantEmpWage=companyEmpWage.get(i);
-                        companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
-                        System.out.println(companyEmpWage);
+                        companyEmpWage.setTotalEmpWage(this.computeEmpWage(company));
+                        System.out.println(company);
                 }
         }
 
@@ -68,6 +73,12 @@ public class EmployeeWageBuilder implements IComputeEmpWage {
                 empWageBuilder.computeEmpWage();
 		System.out.println("total wage for DMart Company: "+empWageBuilder.getTotalWage(company"DMart"));
         }
+
+	@Override
+	public int getTotalWage(String company)
+	{
+	return companyEmpWageMap.get(company).totalEmpWage;
+	}
 }
 
 

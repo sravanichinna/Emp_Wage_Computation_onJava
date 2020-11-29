@@ -12,7 +12,8 @@ public class CompanyEmpWage{
 		this.maxHoursPerMonth = maxHoursPerMonth;
 	}
 
-	public void setTotalEmpWage(int totalEmpWage) {
+	public void setTotalEmpWage(int totalEmpWage) 
+	{
 		this.totalEmpWage = totalEmpWage;
 	}
 
