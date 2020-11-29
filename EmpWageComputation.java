@@ -8,24 +8,33 @@ public class EmpWageComputation{
                 System.out.println("Random number: "+randomNum);
                 int fullTimePresent=2;
                 int partTimePresent=1;
-		int absent=0;
-		int wagePerHour=20;
-		int fullTimeHour=8;
-		int partTimeHour=4;
-		int dailyEmpWage=0;
+		int noOfDaysInMonth=20;
+		int empRatePerHr=20;
+		int empHrs=0;
+		int empWage=0;
+		int empWageForMonth=0;
+		for(int day=1;day<=noOfDaysInMonth;day++)
+		{
 		switch(randomNum)
 		{
-		case 1:
-			int partTimeWage=(partTimeHour*wagePerHour);
-			System.out.println("part time employee: "+partTimeWage);
-				break;
-		case 2:
-			int fullTimeWage=(fullTimeHour*wagePerHour);
-			System.out.println("full time employee: "+fullTimeWage);
-				break;
-		default:
-			System.out.println("Absent: "+absent);
+		case partTimePresent:
+			System.out.println("part time ");
+			empHrs=4;
+			break;
+		case fullTimePresent:
+			System.out.println("fyll time ");
+			empHrs=8;
+			break;
+		default
+			System.out.println("employee is absent ");
+			empHrs=0;
 		}
+		empWage=(empHrs * empRatePerHr);
+		empWageForMonth=(empWageForMonth+empWage);
+		System.out.println("employee wage for day" + day + ":"+empWage);
+		}
+		System.out.println("employee wage of month is: "+empWageForMonth);
+
 	}
 }
 
