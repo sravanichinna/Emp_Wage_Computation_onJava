@@ -3,4 +3,6 @@ public interface IComputeEmpWage{
 
 	public void computeEmpWage();
 	public int computeEmpWage(CompanyEmpWage comapanyEmpWage);
+	public int getTotalWage(String company);
+
 }
